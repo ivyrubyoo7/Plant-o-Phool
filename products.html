@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop Plants – Plantify</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><div class="nav-logo-icon">🌿</div>Plantify<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="nav-link" data-page="index.html">Home</a></li>
+      <li class="nav-dropdown">
+        <a href="products.html" class="nav-link active">Plant Types ▾</a>
+        <div class="dropdown-menu">
+          <a href="products.html?cat=indoor">🪴 Indoor Plants</a>
+          <a href="products.html?cat=outdoor">🌳 Outdoor Plants</a>
+          <a href="products.html?cat=succulent">🌵 Succulents</a>
+          <a href="products.html?cat=air-purifying">💨 Air-Purifying</a>
+        </div>
+      </li>
+      <li><a href="index.html#map" class="nav-link">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="nav-icon-btn theme-toggle">🌙</button>
+      <a href="cart.html" class="nav-icon-btn">🛒<span class="cart-count"></span></a>
+      <a href="auth.html" class="nav-login-btn">Login</a>
+      <button class="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <div class="mobile-nav">
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="products.html" class="nav-link">All Plants</a>
+    <a href="cart.html" class="nav-link">Cart</a>
+    <a href="auth.html" class="nav-link">Login</a>
+  </div>
+</nav>
+
+<!-- Page Hero -->
+<div class="page-hero">
+  <div class="container">
+    <span class="section-label">Our Collection</span>
+    <h1 style="font-size:clamp(2rem,5vw,3.5rem);">Discover Your Perfect Plant</h1>
+    <p style="margin-top:0.75rem;color:var(--text-mid);">Browse our curated selection of 150+ premium plants, hand-picked by expert botanists.</p>
+  </div>
+</div>
+
+<section class="section-pad" style="padding-top:2rem;">
+  <div class="container">
+
+    <!-- Filters Bar -->
+    <div class="filters-bar">
+      <div class="search-wrap">
+        <span class="search-icon" aria-hidden="true">🔍</span>
+        <input type="search" id="searchInput" placeholder="Search plants..." aria-label="Search plants">
+      </div>
+      <select class="filter-select" id="categoryFilter" aria-label="Filter by category">
+        <option value="">All Categories</option>
+        <option value="indoor">Indoor</option>
+        <option value="outdoor">Outdoor</option>
+        <option value="succulent">Succulent</option>
+        <option value="air-purifying">Air-Purifying</option>
+      </select>
+      <select class="filter-select" id="priceFilter" aria-label="Filter by price">
+        <option value="">Any Price</option>
+        <option value="0-20">Under $20</option>
+        <option value="20-40">$20 – $40</option>
+        <option value="40-70">$40 – $70</option>
+        <option value="70-9999">$70+</option>
+      </select>
+      <select class="filter-select" id="sortFilter" aria-label="Sort products">
+        <option value="default">Sort: Default</option>
+        <option value="price-asc">Price: Low to High</option>
+        <option value="price-desc">Price: High to Low</option>
+        <option value="rating">Highest Rated</option>
+        <option value="name">A – Z</option>
+      </select>
+    </div>
+
+    <!-- Active Filters -->
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;flex-wrap:wrap;gap:0.75rem;">
+      <div class="filter-tags" id="filterTags">
+        <button class="filter-tag active" data-cat="">All</button>
+        <button class="filter-tag" data-cat="indoor">Indoor</button>
+        <button class="filter-tag" data-cat="outdoor">Outdoor</button>
+        <button class="filter-tag" data-cat="succulent">Succulent</button>
+        <button class="filter-tag" data-cat="air-purifying">Air-Purifying</button>
+      </div>
+      <span class="results-count" id="resultsCount"></span>
+    </div>
+
+    <!-- Grid -->
+    <div class="products-grid" id="productsGrid"></div>
+
+    <!-- Empty state -->
+    <div id="emptyState" style="display:none;text-align:center;padding:4rem 2rem;">
+      <div style="font-size:4rem;margin-bottom:1rem;">🌵</div>
+      <h3 style="margin-bottom:0.5rem;">No plants found</h3>
+      <p>Try adjusting your search or filters.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">🌿 Plantify<span>.</span></div>
+        <p>Bringing nature indoors, one plant at a time.</p>
+        <div class="social-links">
+          <a href="#" class="social-link" aria-label="Instagram">📸</a>
+          <a href="#" class="social-link" aria-label="Twitter">🐦</a>
+          <a href="#" class="social-link" aria-label="Facebook">👍</a>
+          <a href="#" class="social-link" aria-label="Pinterest">📌</a>
+        </div>
+      </div>
+      <div class="footer-col"><h5>Shop</h5><ul>
+        <li><a href="products.html">All Plants</a></li>
+        <li><a href="products.html?cat=indoor">Indoor</a></li>
+        <li><a href="products.html?cat=outdoor">Outdoor</a></li>
+        <li><a href="products.html?cat=succulent">Succulents</a></li>
+      </ul></div>
+      <div class="footer-col"><h5>Help</h5><ul>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Shipping</a></li>
+        <li><a href="#">Returns</a></li>
+        <li><a href="index.html#map">Contact</a></li>
+      </ul></div>
+      <div class="footer-col"><h5>Company</h5><ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="auth.html">My Account</a></li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Plantify. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+
+<div class="toast"></div>
+
+<script src="js/products-data.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/app.js"></script>
+<script>
+  let filtered = [...PRODUCTS];
+  let activeCat = '';
+  let searchQ = '';
+  let priceRange = '';
+  let sortBy = 'default';
+
+  // Read URL param
+  const urlCat = new URLSearchParams(window.location.search).get('cat') || '';
+  if (urlCat) {
+    activeCat = urlCat;
+    document.getElementById('categoryFilter').value = urlCat;
+    document.querySelectorAll('.filter-tag').forEach(t => {
+      t.classList.toggle('active', t.dataset.cat === urlCat);
+    });
+  }
+
+  function applyFilters() {
+    filtered = PRODUCTS.filter(p => {
+      const matchCat = !activeCat || p.category === activeCat;
+      const matchSearch = !searchQ || p.name.toLowerCase().includes(searchQ) || p.tags.some(t => t.toLowerCase().includes(searchQ));
+      let matchPrice = true;
+      if (priceRange) {
+        const [min, max] = priceRange.split('-').map(Number);
+        matchPrice = p.price >= min && p.price <= max;
+      }
+      return matchCat && matchSearch && matchPrice;
+    });
+
+    // Sort
+    if (sortBy === 'price-asc')  filtered.sort((a,b) => a.price - b.price);
+    if (sortBy === 'price-desc') filtered.sort((a,b) => b.price - a.price);
+    if (sortBy === 'rating')     filtered.sort((a,b) => b.rating - a.rating);
+    if (sortBy === 'name')       filtered.sort((a,b) => a.name.localeCompare(b.name));
+
+    renderGrid();
+  }
+
+  function renderGrid() {
+    const grid = document.getElementById('productsGrid');
+    const empty = document.getElementById('emptyState');
+    const count = document.getElementById('resultsCount');
+
+    if (filtered.length === 0) {
+      grid.innerHTML = '';
+      empty.style.display = 'block';
+    } else {
+      grid.innerHTML = filtered.map(buildProductCard).join('');
+      empty.style.display = 'none';
+    }
+    count.textContent = `${filtered.length} plant${filtered.length !== 1 ? 's' : ''} found`;
+    setTimeout(() => { LazyLoad.init(); Reveal.init(); }, 50);
+  }
+
+  // Events
+  document.getElementById('searchInput').addEventListener('input', e => {
+    searchQ = e.target.value.toLowerCase().trim();
+    applyFilters();
+  });
+  document.getElementById('categoryFilter').addEventListener('change', e => {
+    activeCat = e.target.value;
+    document.querySelectorAll('.filter-tag').forEach(t => t.classList.toggle('active', t.dataset.cat === activeCat));
+    applyFilters();
+  });
+  document.getElementById('priceFilter').addEventListener('change', e => {
+    priceRange = e.target.value;
+    applyFilters();
+  });
+  document.getElementById('sortFilter').addEventListener('change', e => {
+    sortBy = e.target.value;
+    applyFilters();
+  });
+  document.querySelectorAll('.filter-tag').forEach(tag => {
+    tag.addEventListener('click', () => {
+      activeCat = tag.dataset.cat;
+      document.querySelectorAll('.filter-tag').forEach(t => t.classList.toggle('active', t.dataset.cat === activeCat));
+      document.getElementById('categoryFilter').value = activeCat;
+      applyFilters();
+    });
+  });
+
+  applyFilters();
+</script>
+</body>
+</html>

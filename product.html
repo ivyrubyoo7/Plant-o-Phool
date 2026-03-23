@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Detail – Plantify</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><div class="nav-logo-icon">🌿</div>Plantify<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="nav-link">Home</a></li>
+      <li><a href="products.html" class="nav-link active">Shop</a></li>
+      <li><a href="index.html#map" class="nav-link">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="nav-icon-btn theme-toggle">🌙</button>
+      <a href="cart.html" class="nav-icon-btn">🛒<span class="cart-count"></span></a>
+      <a href="auth.html" class="nav-login-btn">Login</a>
+      <button class="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <div class="mobile-nav">
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="products.html" class="nav-link">Shop</a>
+    <a href="cart.html" class="nav-link">Cart</a>
+  </div>
+</nav>
+
+<div class="product-detail">
+  <div class="container">
+    <!-- Breadcrumb -->
+    <nav aria-label="Breadcrumb" style="margin-bottom:2rem;font-size:0.9rem;color:var(--text-light);">
+      <a href="index.html" style="color:var(--green-mid);">Home</a> /
+      <a href="products.html" style="color:var(--green-mid);">Shop</a> /
+      <span id="breadcrumbName">Plant</span>
+    </nav>
+
+    <div class="detail-grid" id="detailContent">
+      <!-- Populated by JS -->
+    </div>
+
+    <!-- Related Products -->
+    <div style="margin-top:5rem;">
+      <div class="text-center reveal">
+        <span class="section-label">You Might Also Like</span>
+        <h2 style="margin-bottom:2rem;">Related Plants</h2>
+      </div>
+      <div class="products-grid" id="relatedGrid"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">🌿 Plantify<span>.</span></div>
+        <p>Bringing nature indoors, one plant at a time.</p>
+        <div class="social-links">
+          <a href="#" class="social-link" aria-label="Instagram">📸</a>
+          <a href="#" class="social-link" aria-label="Twitter">🐦</a>
+          <a href="#" class="social-link" aria-label="Facebook">👍</a>
+        </div>
+      </div>
+      <div class="footer-col"><h5>Shop</h5><ul>
+        <li><a href="products.html">All Plants</a></li>
+        <li><a href="products.html?cat=indoor">Indoor</a></li>
+        <li><a href="products.html?cat=outdoor">Outdoor</a></li>
+        <li><a href="products.html?cat=succulent">Succulents</a></li>
+      </ul></div>
+      <div class="footer-col"><h5>Help</h5><ul>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Shipping</a></li>
+        <li><a href="#">Returns</a></li>
+      </ul></div>
+      <div class="footer-col"><h5>Company</h5><ul>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom"><span>© 2025 Plantify.</span></div>
+  </div>
+</footer>
+
+<div class="toast"></div>
+
+<script src="js/products-data.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/app.js"></script>
+<script>
+  const id = parseInt(new URLSearchParams(window.location.search).get('id')) || 1;
+  const product = PRODUCTS.find(p => p.id === id) || PRODUCTS[0];
+  let qty = 1;
+  let activeImg = 0;
+
+  // Set page title
+  document.title = `${product.name} – Plantify`;
+  document.getElementById('breadcrumbName').textContent = product.name;
+
+  function setImg(idx) {
+    activeImg = idx;
+    document.getElementById('mainImg').src = product.images[idx];
+    document.querySelectorAll('.detail-thumb').forEach((t, i) => t.classList.toggle('active', i === idx));
+  }
+
+  function updateQty(delta) {
+    qty = Math.max(1, qty + delta);
+    document.getElementById('qtyDisplay').textContent = qty;
+  }
+
+  function addToCart() {
+    Cart.add(product, qty);
+    const btn = document.getElementById('addCartBtn');
+    btn.textContent = '✓ Added!';
+    btn.style.background = 'var(--green-deep)';
+    setTimeout(() => { btn.textContent = '🛒 Add to Cart'; btn.style.background = ''; }, 2000);
+  }
+
+  const tagHTML = product.tags.map(t => {
+    const cls = t.includes('Air') ? 'tag-blue' : t.includes('Succulent') || t.includes('Outdoor') ? 'tag-earth' : 'tag-green';
+    return `<span class="tag ${cls}">${t}</span>`;
+  }).join('');
+
+  const thumbsHTML = product.images.map((img, i) =>
+    `<img src="${img}" class="detail-thumb ${i===0?'active':''}" alt="${product.name} view ${i+1}" onclick="setImg(${i})" loading="lazy">`
+  ).join('');
+
+  const careItems = [
+    { icon: '☀️', label: 'Light', val: product.care.light },
+    { icon: '💧', label: 'Water', val: product.care.water },
+    { icon: '💦', label: 'Humidity', val: product.care.humidity },
+    { icon: '🌱', label: 'Difficulty', val: product.care.difficulty },
+  ];
+  const careHTML = careItems.map(c => `
+    <div class="care-item">
+      <span class="care-icon">${c.icon}</span>
+      <div>
+        <span class="care-label">${c.label}</span>
+        <span class="care-value">${c.val}</span>
+      </div>
+    </div>`).join('');
+
+  document.getElementById('detailContent').innerHTML = `
+    <div class="detail-gallery">
+      <img id="mainImg" src="${product.images[0]}" alt="${product.name}" class="detail-main-img">
+      <div class="detail-thumbnails">${thumbsHTML}</div>
+    </div>
+    <div class="detail-info">
+      <div class="badge-row">${tagHTML}</div>
+      <h1 class="detail-name">${product.name}</h1>
+      <p style="font-style:italic;color:var(--text-light);font-size:0.9rem;margin-bottom:0.75rem;">${product.latin}</p>
+      <div class="detail-rating">
+        <span class="stars">${'★'.repeat(Math.floor(product.rating))}${'☆'.repeat(5-Math.floor(product.rating))}</span>
+        <span>${product.rating} (${product.reviews} reviews)</span>
+      </div>
+      <div class="detail-price">
+        $${product.price.toFixed(2)}
+        ${product.oldPrice ? `<span style="font-size:1rem;font-weight:400;color:var(--text-light);text-decoration:line-through;margin-left:8px;">$${product.oldPrice.toFixed(2)}</span>` : ''}
+      </div>
+      <p class="detail-desc">${product.description}</p>
+      <h4 style="margin-bottom:1rem;">🌿 Care Instructions</h4>
+      <div class="care-grid">${careHTML}</div>
+      <div class="qty-add">
+        <div class="qty-control">
+          <button class="qty-btn" onclick="updateQty(-1)" aria-label="Decrease quantity">−</button>
+          <span class="qty-display" id="qtyDisplay">1</span>
+          <button class="qty-btn" onclick="updateQty(1)" aria-label="Increase quantity">+</button>
+        </div>
+        <button class="btn btn-primary" id="addCartBtn" onclick="addToCart()" style="flex:1;">🛒 Add to Cart</button>
+      </div>
+      <div style="display:flex;gap:0.75rem;">
+        <button class="btn btn-outline" style="flex:1;" onclick="Cart.showToast('❤️ Added to wishlist!')">❤️ Wishlist</button>
+        <a href="cart.html" class="btn btn-ghost" style="flex:1;background:var(--green-deep);color:white;border-color:var(--green-deep);">Buy Now →</a>
+      </div>
+      <div style="margin-top:1.5rem;padding:1rem 1.25rem;background:rgba(82,183,136,0.08);border-radius:var(--radius-md);border:1px solid rgba(82,183,136,0.2);font-size:0.85rem;color:var(--text-mid);">
+        🚚 <strong>Free delivery</strong> on orders over $50 &nbsp;|&nbsp; ✅ <strong>30-day guarantee</strong>
+      </div>
+    </div>`;
+
+  // Related products
+  const related = PRODUCTS.filter(p => p.id !== product.id && p.category === product.category).slice(0, 4);
+  const fallback = related.length < 4 ? PRODUCTS.filter(p => p.id !== product.id).slice(0, 4 - related.length) : [];
+  document.getElementById('relatedGrid').innerHTML = [...related, ...fallback].slice(0,4).map(buildProductCard).join('');
+
+  setTimeout(() => { LazyLoad.init(); Reveal.init(); }, 50);
+
+  // Auto-slide thumbnails
+  let slideInterval = setInterval(() => {
+    activeImg = (activeImg + 1) % product.images.length;
+    setImg(activeImg);
+  }, 3500);
+  document.getElementById('detailContent').addEventListener('mouseover', () => clearInterval(slideInterval));
+</script>
+</body>
+</html>

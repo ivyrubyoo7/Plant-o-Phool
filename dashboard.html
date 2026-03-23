@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard – Plantify</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><div class="nav-logo-icon">🌿</div>Plantify<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="nav-link">Home</a></li>
+      <li><a href="products.html" class="nav-link">Shop</a></li>
+      <li><a href="dashboard.html" class="nav-link active">Dashboard</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="nav-icon-btn theme-toggle">🌙</button>
+      <a href="cart.html" class="nav-icon-btn">🛒<span class="cart-count"></span></a>
+      <a href="auth.html" class="nav-login-btn">Login</a>
+      <button class="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <div class="mobile-nav">
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="products.html" class="nav-link">Shop</a>
+    <a href="dashboard.html" class="nav-link">Dashboard</a>
+    <a href="auth.html" class="nav-link">Login</a>
+  </div>
+</nav>
+
+<div class="dashboard-page">
+  <div class="container">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:2rem;flex-wrap:wrap;gap:1rem;">
+      <div>
+        <span class="section-label">Admin Portal</span>
+        <h1 style="font-size:2.2rem;">Dashboard</h1>
+      </div>
+      <div style="display:flex;gap:0.75rem;align-items:center;">
+        <select class="filter-select" id="periodSelect" onchange="updateCharts(this.value)">
+          <option value="7">Last 7 Days</option>
+          <option value="30" selected>Last 30 Days</option>
+          <option value="90">Last 90 Days</option>
+          <option value="365">This Year</option>
+        </select>
+        <button class="btn btn-primary btn-sm" onclick="Cart.showToast('📊 Report exported!')">Export</button>
+      </div>
+    </div>
+
+    <!-- Metric Cards -->
+    <div class="dashboard-grid">
+      <div class="metric-card reveal">
+        <div class="metric-header">
+          <div class="metric-icon" style="background:rgba(82,183,136,0.15);">💰</div>
+          <span class="metric-badge badge-up">↑ 18.4%</span>
+        </div>
+        <div class="metric-value" id="mSales">$0</div>
+        <div class="metric-label">Total Sales</div>
+      </div>
+      <div class="metric-card reveal reveal-delay-1">
+        <div class="metric-header">
+          <div class="metric-icon" style="background:rgba(72,149,239,0.15);">👁️</div>
+          <span class="metric-badge badge-up">↑ 12.1%</span>
+        </div>
+        <div class="metric-value" id="mViews">0</div>
+        <div class="metric-label">Product Views</div>
+      </div>
+      <div class="metric-card reveal reveal-delay-2">
+        <div class="metric-header">
+          <div class="metric-icon" style="background:rgba(244,162,97,0.15);">🛒</div>
+          <span class="metric-badge badge-up">↑ 5.3%</span>
+        </div>
+        <div class="metric-value" id="mOrders">0</div>
+        <div class="metric-label">Total Orders</div>
+      </div>
+      <div class="metric-card reveal reveal-delay-3">
+        <div class="metric-header">
+          <div class="metric-icon" style="background:rgba(239,68,68,0.1);">📈</div>
+          <span class="metric-badge badge-down">↓ 1.2%</span>
+        </div>
+        <div class="metric-value" id="mCtr">0%</div>
+        <div class="metric-label">Click-Through Rate</div>
+      </div>
+    </div>
+
+    <!-- Charts -->
+    <div class="charts-grid">
+      <div class="chart-card reveal">
+        <div class="chart-header">
+          <h4>Revenue Overview</h4>
+          <span style="font-size:0.8rem;color:var(--text-light);" id="chartPeriodLabel">Last 30 Days</span>
+        </div>
+        <div class="chart-body">
+          <canvas id="salesChart"></canvas>
+        </div>
+      </div>
+      <div class="chart-card reveal reveal-delay-1">
+        <div class="chart-header">
+          <h4>Sales by Category</h4>
+        </div>
+        <div class="chart-body">
+          <canvas id="categoryChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Views Chart -->
+    <div class="chart-card reveal" style="margin-bottom:1.5rem;">
+      <div class="chart-header">
+        <h4>Page Views Analytics</h4>
+        <span style="font-size:0.8rem;color:var(--text-light);">Product page visits</span>
+      </div>
+      <div class="chart-body">
+        <canvas id="viewsChart"></canvas>
+      </div>
+    </div>
+
+    <!-- Products Table -->
+    <div class="table-card reveal">
+      <div class="table-header">
+        <h4>Top Products</h4>
+        <a href="products.html" class="btn btn-outline btn-sm">View All</a>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Sales</th>
+            <th>Views</th>
+            <th>Revenue</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="productsTableBody"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">🌿 Plantify<span>.</span></div>
+        <p>Bringing nature indoors, one plant at a time.</p>
+        <div class="social-links">
+          <a href="#" class="social-link" aria-label="Instagram">📸</a>
+          <a href="#" class="social-link" aria-label="Twitter">🐦</a>
+        </div>
+      </div>
+      <div class="footer-col"><h5>Quick Links</h5><ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="products.html">Shop</a></li>
+        <li><a href="cart.html">Cart</a></li>
+        <li><a href="auth.html">Login</a></li>
+      </ul></div>
+      <div class="footer-col"><h5>Reports</h5><ul>
+        <li><a href="#">Sales Report</a></li>
+        <li><a href="#">Analytics</a></li>
+        <li><a href="#">Inventory</a></li>
+      </ul></div>
+      <div class="footer-col"><h5>Settings</h5><ul>
+        <li><a href="#">Profile</a></li>
+        <li><a href="#">Notifications</a></li>
+        <li><a href="#">Security</a></li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom"><span>© 2025 Plantify. All rights reserved.</span></div>
+  </div>
+</footer>
+
+<div class="toast"></div>
+
+<script src="js/products-data.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/app.js"></script>
+<script>
+// ─── Simulated Data ──────────────────────────────────────────
+const DATA = {
+  7:   { sales: 3240.50,  views: 8420,  orders: 87,  ctr: 8.2  },
+  30:  { sales: 14820.75, views: 34500, orders: 342, ctr: 7.8  },
+  90:  { sales: 42350.00, views: 98200, orders: 987, ctr: 8.1  },
+  365: { sales: 168000.00,views: 380000,orders: 3842,ctr: 7.9  },
+};
+
+const productStats = [
+  { name:'Monstera Deliciosa', cat:'Indoor',   price:39.99, sales:124, views:4200 },
+  { name:'Snake Plant',        cat:'Indoor',   price:24.99, sales:98,  views:3800 },
+  { name:'Fiddle Leaf Fig',    cat:'Indoor',   price:54.99, sales:67,  views:2900 },
+  { name:'String of Pearls',   cat:'Succulent',price:17.99, sales:89,  views:2600 },
+  { name:'Bird of Paradise',   cat:'Indoor',   price:64.99, sales:43,  views:2100 },
+  { name:'Aloe Vera',          cat:'Succulent',price:14.99, sales:156, views:5100 },
+  { name:'Bamboo Palm',        cat:'Air Purif.',price:44.99,sales:51,  views:1900 },
+  { name:'Calathea Orbifolia', cat:'Indoor',   price:34.99, sales:72,  views:2400 },
+];
+
+function animate(el, target, prefix='', suffix='', decimals=0) {
+  const start = 0;
+  const duration = 1200;
+  const startTime = performance.now();
+  function step(now) {
+    const elapsed = now - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    const ease = 1 - Math.pow(1 - progress, 3);
+    const val = start + (target - start) * ease;
+    el.textContent = prefix + val.toFixed(decimals).replace(/\B(?=(\d{3})+(?!\d))/g, ',') + suffix;
+    if (progress < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+function updateMetrics(period) {
+  const d = DATA[period];
+  animate(document.getElementById('mSales'),  d.sales,  '$', '', 2);
+  animate(document.getElementById('mViews'),  d.views,  '',  '');
+  animate(document.getElementById('mOrders'), d.orders, '',  '');
+  animate(document.getElementById('mCtr'),    d.ctr,    '',  '%', 1);
+}
+
+// ─── Charts ──────────────────────────────────────────────────
+const chartDefaults = {
+  font: { family: "'DM Sans', sans-serif" },
+  color: getComputedStyle(document.documentElement).getPropertyValue('--text-light').trim() || '#8a8a8a',
+};
+
+function getChartColors() {
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  return {
+    grid: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)',
+    text: isDark ? '#b8c5bc' : '#8a8a8a',
+  };
+}
+
+let salesChart, categoryChart, viewsChart;
+
+function buildSalesData(period) {
+  const labels = [];
+  const data = [];
+  const now = new Date();
+  const d = DATA[period];
+  for (let i = period - 1; i >= 0; i--) {
+    const date = new Date(now);
+    date.setDate(date.getDate() - i);
+    labels.push(period <= 7 ? date.toLocaleDateString('en',{weekday:'short'}) :
+                period <= 30 ? date.getDate() :
+                period <= 90 ? `W${Math.ceil(date.getDate()/7)}` :
+                date.toLocaleDateString('en',{month:'short'}));
+    data.push(+(d.sales / period * (0.5 + Math.random())).toFixed(2));
+  }
+  // Remove duplicate labels for year
+  if (period === 365) {
+    const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    return { labels: months, data: months.map(() => +(d.sales / 12 * (0.6 + Math.random())).toFixed(2)) };
+  }
+  return { labels, data };
+}
+
+function initCharts(period) {
+  const cc = getChartColors();
+
+  // Sales Line Chart
+  const sCtx = document.getElementById('salesChart').getContext('2d');
+  const sd = buildSalesData(period);
+  if (salesChart) salesChart.destroy();
+  salesChart = new Chart(sCtx, {
+    type: 'line',
+    data: {
+      labels: sd.labels,
+      datasets: [{
+        label: 'Revenue ($)',
+        data: sd.data,
+        borderColor: '#52b788',
+        backgroundColor: 'rgba(82,183,136,0.1)',
+        borderWidth: 2.5,
+        fill: true,
+        tension: 0.4,
+        pointRadius: period <= 30 ? 3 : 0,
+        pointHoverRadius: 5,
+        pointBackgroundColor: '#52b788',
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { grid: { color: cc.grid }, ticks: { color: cc.text, font: { size: 11 }, maxTicksLimit: 10 } },
+        y: { grid: { color: cc.grid }, ticks: { color: cc.text, font: { size: 11 }, callback: v => '$'+v.toLocaleString() } }
+      }
+    }
+  });
+
+  // Category Doughnut Chart
+  const cCtx = document.getElementById('categoryChart').getContext('2d');
+  if (categoryChart) categoryChart.destroy();
+  categoryChart = new Chart(cCtx, {
+    type: 'doughnut',
+    data: {
+      labels: ['Indoor', 'Succulent', 'Outdoor', 'Air-Purifying'],
+      datasets: [{
+        data: [48, 22, 18, 12],
+        backgroundColor: ['#2d6a4f','#52b788','#95d5b2','#b7e4c7'],
+        borderWidth: 0,
+        hoverOffset: 8,
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { position: 'bottom', labels: { color: cc.text, padding: 16, font: { size: 12 } } }
+      }
+    }
+  });
+
+  // Views Bar Chart
+  const vCtx = document.getElementById('viewsChart').getContext('2d');
+  const topNames = productStats.slice(0,8).map(p => p.name.split(' ').slice(0,2).join(' '));
+  const topViews = productStats.slice(0,8).map(p => p.views);
+  if (viewsChart) viewsChart.destroy();
+  viewsChart = new Chart(vCtx, {
+    type: 'bar',
+    data: {
+      labels: topNames,
+      datasets: [{
+        label: 'Views',
+        data: topViews,
+        backgroundColor: topViews.map((_, i) => `rgba(82,183,136,${0.4 + i * 0.07})`),
+        borderColor: '#52b788',
+        borderWidth: 1.5,
+        borderRadius: 6,
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { grid: { display: false }, ticks: { color: cc.text, font: { size: 11 } } },
+        y: { grid: { color: cc.grid }, ticks: { color: cc.text, font: { size: 11 } } }
+      }
+    }
+  });
+}
+
+function updateCharts(period) {
+  period = parseInt(period);
+  const labels = { 7:'Last 7 Days', 30:'Last 30 Days', 90:'Last 90 Days', 365:'This Year' };
+  document.getElementById('chartPeriodLabel').textContent = labels[period];
+  updateMetrics(period);
+  initCharts(period);
+}
+
+// ─── Products Table ──────────────────────────────────────────
+function renderTable() {
+  document.getElementById('productsTableBody').innerHTML = productStats.map((p, i) => {
+    const revenue = (p.price * p.sales).toFixed(2);
+    const status = p.sales > 100 ? 'active' : p.sales > 50 ? 'low' : 'out';
+    const statusLabel = p.sales > 100 ? 'In Stock' : p.sales > 50 ? 'Low Stock' : 'Out of Stock';
+    return `<tr>
+      <td style="display:flex;align-items:center;gap:0.75rem;">
+        <div style="width:36px;height:36px;border-radius:8px;background:rgba(82,183,136,0.12);display:flex;align-items:center;justify-content:center;font-size:1.2rem;">🌿</div>
+        <span style="font-weight:600;color:var(--text-dark);">${p.name}</span>
+      </td>
+      <td>${p.cat}</td>
+      <td>$${p.price}</td>
+      <td>${p.sales}</td>
+      <td>${p.views.toLocaleString()}</td>
+      <td style="font-weight:700;color:var(--green-mid);">$${parseFloat(revenue).toLocaleString()}</td>
+      <td><span class="status-pill status-${status}">${statusLabel}</span></td>
+    </tr>`;
+  }).join('');
+}
+
+// Init
+document.addEventListener('DOMContentLoaded', () => {
+  updateMetrics(30);
+  initCharts(30);
+  renderTable();
+
+  // Re-init charts on theme change
+  document.querySelectorAll('.theme-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      setTimeout(() => initCharts(parseInt(document.getElementById('periodSelect').value)), 100);
+    });
+  });
+});
+</script>
+</body>
+</html>

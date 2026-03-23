@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login / Sign Up – Plantify</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
+  <style>
+    body { overflow: hidden; }
+    @media (max-width: 768px) { body { overflow: auto; } }
+    .input-eye {
+      position: absolute;
+      right: 1rem; top: 50%; transform: translateY(-50%);
+      background: none; font-size: 1rem; cursor: pointer; color: var(--text-light);
+    }
+    .password-wrap { position: relative; }
+    .password-wrap .form-input { padding-right: 3rem; }
+    .strength-bar { height: 4px; border-radius: 2px; background: var(--border); margin-top: 0.5rem; overflow: hidden; }
+    .strength-fill { height: 100%; border-radius: 2px; transition: all 0.3s ease; width: 0%; }
+    .back-link { color: var(--green-mid); font-size:0.9rem; display:inline-flex; align-items:center; gap:0.4rem; margin-bottom:1.5rem; }
+    .back-link:hover { opacity:0.75; }
+  </style>
+</head>
+<body data-auth-page>
+
+<!-- Minimal Nav -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><div class="nav-logo-icon">🌿</div>Plantify<span>.</span></a>
+    <div class="nav-actions">
+      <button class="nav-icon-btn theme-toggle">🌙</button>
+    </div>
+  </div>
+</nav>
+
+<div class="auth-page" style="padding-top:68px;min-height:100vh;">
+  <!-- Visual Panel -->
+  <div class="auth-visual" role="presentation">
+    <div class="auth-visual-overlay"></div>
+    <div class="auth-visual-content">
+      <span class="section-label" style="color:var(--green-pale);">Welcome to</span>
+      <h2>Plantify</h2>
+      <p>Your journey to a greener, more beautiful home starts here.</p>
+      <div style="display:flex;gap:2rem;margin-top:2rem;">
+        <div>
+          <div style="font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;color:var(--green-pale);">150+</div>
+          <div style="font-size:0.8rem;color:rgba(255,255,255,0.55);">Plant Varieties</div>
+        </div>
+        <div>
+          <div style="font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;color:var(--green-pale);">2.4k+</div>
+          <div style="font-size:0.8rem;color:rgba(255,255,255,0.55);">Happy Customers</div>
+        </div>
+        <div>
+          <div style="font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;color:var(--green-pale);">4.9★</div>
+          <div style="font-size:0.8rem;color:rgba(255,255,255,0.55);">Average Rating</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Form Panel -->
+  <div class="auth-form-panel">
+    <a href="index.html" class="back-link">← Back to home</a>
+
+    <div class="auth-logo">
+      <div style="font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:900;color:var(--green-deep);">
+        🌿 Plantify<span style="color:var(--green-light);">.</span>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="auth-tabs" role="tablist">
+      <button class="auth-tab active" id="loginTab" role="tab" aria-selected="true" onclick="switchTab('login')">Login</button>
+      <button class="auth-tab" id="signupTab" role="tab" aria-selected="false" onclick="switchTab('signup')">Sign Up</button>
+    </div>
+
+    <!-- Login Form -->
+    <div class="auth-form active" id="loginForm" role="tabpanel" aria-labelledby="loginTab">
+      <h3 style="margin-bottom:0.5rem;">Welcome back 👋</h3>
+      <p style="font-size:0.9rem;margin-bottom:1.5rem;">Sign in to your Plantify account.</p>
+      <div class="form-group">
+        <label class="form-label" for="loginEmail">Email Address</label>
+        <input type="email" id="loginEmail" class="form-input" placeholder="you@example.com">
+        <span class="form-error" id="loginEmailErr">Enter a valid email address</span>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="loginPass">Password</label>
+        <div class="password-wrap">
+          <input type="password" id="loginPass" class="form-input" placeholder="••••••••">
+          <button type="button" class="input-eye" onclick="togglePass('loginPass',this)" aria-label="Toggle password visibility">👁️</button>
+        </div>
+        <span class="form-error" id="loginPassErr">Please enter your password</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;">
+        <label style="display:flex;align-items:center;gap:0.5rem;font-size:0.85rem;cursor:pointer;">
+          <input type="checkbox" style="accent-color:var(--green-mid);">
+          Remember me
+        </label>
+        <a href="#" style="font-size:0.85rem;color:var(--green-mid);">Forgot password?</a>
+      </div>
+      <button class="btn btn-primary btn-full" onclick="handleLogin()">Sign In →</button>
+
+      <div class="auth-divider">or continue with</div>
+      <div class="social-auth">
+        <button class="social-auth-btn" onclick="socialAuth('Google')">🌐 Google</button>
+        <button class="social-auth-btn" onclick="socialAuth('Facebook')">👍 Facebook</button>
+      </div>
+    </div>
+
+    <!-- Signup Form -->
+    <div class="auth-form" id="signupForm" role="tabpanel" aria-labelledby="signupTab">
+      <h3 style="margin-bottom:0.5rem;">Create account 🌿</h3>
+      <p style="font-size:0.9rem;margin-bottom:1.5rem;">Join thousands of plant lovers.</p>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label" for="signupFirst">First Name</label>
+          <input type="text" id="signupFirst" class="form-input" placeholder="Priya">
+          <span class="form-error" id="signupFirstErr">Required</span>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="signupLast">Last Name</label>
+          <input type="text" id="signupLast" class="form-input" placeholder="Sharma">
+          <span class="form-error" id="signupLastErr">Required</span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="signupEmail">Email Address</label>
+        <input type="email" id="signupEmail" class="form-input" placeholder="you@example.com">
+        <span class="form-error" id="signupEmailErr">Enter a valid email</span>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="signupPass">Password</label>
+        <div class="password-wrap">
+          <input type="password" id="signupPass" class="form-input" placeholder="Min. 8 characters" oninput="checkStrength(this.value)">
+          <button type="button" class="input-eye" onclick="togglePass('signupPass',this)" aria-label="Toggle password visibility">👁️</button>
+        </div>
+        <div class="strength-bar"><div class="strength-fill" id="strengthFill"></div></div>
+        <span id="strengthLabel" style="font-size:0.75rem;color:var(--text-light);"></span>
+        <span class="form-error" id="signupPassErr">Min. 8 characters required</span>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="signupConfirm">Confirm Password</label>
+        <div class="password-wrap">
+          <input type="password" id="signupConfirm" class="form-input" placeholder="Repeat password">
+          <button type="button" class="input-eye" onclick="togglePass('signupConfirm',this)" aria-label="Toggle password visibility">👁️</button>
+        </div>
+        <span class="form-error" id="signupConfirmErr">Passwords don't match</span>
+      </div>
+      <div style="margin-bottom:1.5rem;">
+        <label style="display:flex;align-items:flex-start;gap:0.5rem;font-size:0.85rem;cursor:pointer;">
+          <input type="checkbox" id="agreeTerms" style="accent-color:var(--green-mid);margin-top:2px;">
+          <span>I agree to the <a href="#" style="color:var(--green-mid);">Terms of Service</a> and <a href="#" style="color:var(--green-mid);">Privacy Policy</a></span>
+        </label>
+        <span class="form-error" id="termsErr" style="display:none;">You must accept the terms</span>
+      </div>
+      <button class="btn btn-primary btn-full" onclick="handleSignup()">Create Account 🌱</button>
+
+      <div class="auth-divider">or continue with</div>
+      <div class="social-auth">
+        <button class="social-auth-btn" onclick="socialAuth('Google')">🌐 Google</button>
+        <button class="social-auth-btn" onclick="socialAuth('Facebook')">👍 Facebook</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast"></div>
+
+<script src="js/cart.js"></script>
+<script src="js/app.js"></script>
+<script>
+  function switchTab(tab) {
+    document.getElementById('loginForm').classList.toggle('active', tab === 'login');
+    document.getElementById('signupForm').classList.toggle('active', tab === 'signup');
+    document.getElementById('loginTab').classList.toggle('active', tab === 'login');
+    document.getElementById('signupTab').classList.toggle('active', tab === 'signup');
+    document.getElementById('loginTab').setAttribute('aria-selected', tab === 'login');
+    document.getElementById('signupTab').setAttribute('aria-selected', tab === 'signup');
+  }
+
+  function togglePass(id, btn) {
+    const el = document.getElementById(id);
+    if (el.type === 'password') { el.type = 'text'; btn.textContent = '🙈'; }
+    else { el.type = 'password'; btn.textContent = '👁️'; }
+  }
+
+  function checkStrength(val) {
+    const fill = document.getElementById('strengthFill');
+    const label = document.getElementById('strengthLabel');
+    let score = 0;
+    if (val.length >= 8) score++;
+    if (/[A-Z]/.test(val)) score++;
+    if (/[0-9]/.test(val)) score++;
+    if (/[^A-Za-z0-9]/.test(val)) score++;
+    const levels = [
+      { pct: '25%', color: '#ef4444', text: 'Weak' },
+      { pct: '50%', color: '#f4a261', text: 'Fair' },
+      { pct: '75%', color: '#52b788', text: 'Good' },
+      { pct: '100%', color: '#2d6a4f', text: 'Strong 💪' },
+    ];
+    const lvl = levels[Math.max(0, score-1)] || levels[0];
+    fill.style.width = val.length ? lvl.pct : '0%';
+    fill.style.background = lvl.color;
+    label.textContent = val.length ? lvl.text : '';
+    label.style.color = lvl.color;
+  }
+
+  function handleLogin() {
+    const email = document.getElementById('loginEmail').value;
+    const pass = document.getElementById('loginPass').value;
+    let valid = true;
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      document.getElementById('loginEmail').classList.add('error');
+      valid = false;
+    } else {
+      document.getElementById('loginEmail').classList.remove('error');
+    }
+    if (!pass) {
+      document.getElementById('loginPass').classList.add('error');
+      valid = false;
+    } else {
+      document.getElementById('loginPass').classList.remove('error');
+    }
+    if (!valid) return;
+    Cart.showToast('🌿 Welcome back! Redirecting...');
+    setTimeout(() => location.href = 'index.html', 1500);
+  }
+
+  function handleSignup() {
+    let valid = true;
+    const checks = [
+      { id: 'signupFirst', msg: 'signupFirstErr', check: v => v.trim().length > 0 },
+      { id: 'signupLast',  msg: 'signupLastErr',  check: v => v.trim().length > 0 },
+      { id: 'signupEmail', msg: 'signupEmailErr', check: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) },
+      { id: 'signupPass',  msg: 'signupPassErr',  check: v => v.length >= 8 },
+    ];
+    checks.forEach(({id, check}) => {
+      const el = document.getElementById(id);
+      if (!check(el.value)) { el.classList.add('error'); valid = false; }
+      else el.classList.remove('error');
+    });
+    const pass = document.getElementById('signupPass').value;
+    const confirm = document.getElementById('signupConfirm').value;
+    if (pass !== confirm) {
+      document.getElementById('signupConfirm').classList.add('error');
+      valid = false;
+    } else {
+      document.getElementById('signupConfirm').classList.remove('error');
+    }
+    if (!document.getElementById('agreeTerms').checked) {
+      document.getElementById('termsErr').style.display = 'block';
+      valid = false;
+    } else {
+      document.getElementById('termsErr').style.display = 'none';
+    }
+    if (!valid) { Cart.showToast('⚠️ Please fix the errors above.'); return; }
+    Cart.showToast('🌱 Account created! Welcome to Plantify!');
+    setTimeout(() => location.href = 'index.html', 1500);
+  }
+
+  function socialAuth(provider) {
+    Cart.showToast(`🔐 ${provider} sign-in (demo mode)`);
+    setTimeout(() => location.href = 'index.html', 1500);
+  }
+
+  document.querySelectorAll('.form-input').forEach(el => {
+    el.addEventListener('input', () => el.classList.remove('error'));
+  });
+</script>
+</body>
+</html>

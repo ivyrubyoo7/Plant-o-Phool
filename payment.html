@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout – Plantify</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><div class="nav-logo-icon">🌿</div>Plantify<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="nav-link">Home</a></li>
+      <li><a href="products.html" class="nav-link">Shop</a></li>
+      <li><a href="cart.html" class="nav-link">Cart</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="nav-icon-btn theme-toggle">🌙</button>
+      <a href="cart.html" class="nav-icon-btn">🛒<span class="cart-count"></span></a>
+      <a href="auth.html" class="nav-login-btn">Login</a>
+      <button class="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <div class="mobile-nav">
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="products.html" class="nav-link">Shop</a>
+    <a href="cart.html" class="nav-link">Cart</a>
+  </div>
+</nav>
+
+<div class="payment-page">
+  <div class="container">
+    <div style="margin-bottom:2rem;">
+      <span class="section-label">Secure Checkout</span>
+      <h1 style="font-size:2.5rem;">Complete Your Order</h1>
+    </div>
+
+    <!-- Progress Steps -->
+    <div style="display:flex;gap:0;margin-bottom:3rem;max-width:500px;">
+      <div style="flex:1;text-align:center;">
+        <div style="width:32px;height:32px;border-radius:50%;background:var(--green-mid);color:white;display:flex;align-items:center;justify-content:center;margin:0 auto 0.4rem;font-size:0.85rem;font-weight:700;">✓</div>
+        <span style="font-size:0.8rem;color:var(--green-mid);font-weight:600;">Cart</span>
+      </div>
+      <div style="flex:1;border-top:2px solid var(--green-mid);margin-top:16px;"></div>
+      <div style="flex:1;text-align:center;">
+        <div style="width:32px;height:32px;border-radius:50%;background:var(--green-mid);color:white;display:flex;align-items:center;justify-content:center;margin:0 auto 0.4rem;font-size:0.85rem;font-weight:700;">2</div>
+        <span style="font-size:0.8rem;color:var(--green-mid);font-weight:600;">Checkout</span>
+      </div>
+      <div style="flex:1;border-top:2px dashed var(--border);margin-top:16px;"></div>
+      <div style="flex:1;text-align:center;">
+        <div style="width:32px;height:32px;border-radius:50%;background:var(--beige);border:2px solid var(--border);display:flex;align-items:center;justify-content:center;margin:0 auto 0.4rem;font-size:0.85rem;font-weight:700;color:var(--text-light);">3</div>
+        <span style="font-size:0.8rem;color:var(--text-light);">Confirm</span>
+      </div>
+    </div>
+
+    <div class="payment-grid">
+      <div>
+        <!-- Shipping Info -->
+        <div class="form-section" style="margin-bottom:1.5rem;">
+          <h3>📦 Shipping Information</h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="firstName">First Name *</label>
+              <input type="text" id="firstName" class="form-input" placeholder="Priya" required>
+              <span class="form-error">Please enter your first name</span>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="lastName">Last Name *</label>
+              <input type="text" id="lastName" class="form-input" placeholder="Sharma" required>
+              <span class="form-error">Please enter your last name</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="email">Email Address *</label>
+            <input type="email" id="email" class="form-input" placeholder="priya@example.com" required>
+            <span class="form-error">Please enter a valid email</span>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="phone">Phone Number *</label>
+            <input type="tel" id="phone" class="form-input" placeholder="+91 98765 43210" required>
+            <span class="form-error">Please enter your phone number</span>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="address">Street Address *</label>
+            <input type="text" id="address" class="form-input" placeholder="42 Green Garden Lane" required>
+            <span class="form-error">Please enter your address</span>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="city">City *</label>
+              <input type="text" id="city" class="form-input" placeholder="Bangalore" required>
+              <span class="form-error">Please enter your city</span>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="pincode">PIN Code *</label>
+              <input type="text" id="pincode" class="form-input" placeholder="560038" required>
+              <span class="form-error">Please enter PIN code</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Payment Info -->
+        <div class="form-section">
+          <h3>💳 Payment Details</h3>
+          <p style="font-size:0.85rem;color:var(--text-light);margin-bottom:1.25rem;">This is a demo checkout. No real payment will be processed.</p>
+          <div class="card-icons" aria-hidden="true">
+            <span title="Visa">💳</span>
+            <span title="Mastercard">🔴</span>
+            <span title="UPI">📱</span>
+            <span title="Net Banking">🏦</span>
+          </div>
+
+          <!-- Payment method tabs -->
+          <div style="display:flex;gap:0.5rem;margin-bottom:1.5rem;flex-wrap:wrap;">
+            <button class="pay-method-btn active" data-method="card" onclick="selectMethod(this,'card')">💳 Card</button>
+            <button class="pay-method-btn" data-method="upi" onclick="selectMethod(this,'upi')">📱 UPI</button>
+            <button class="pay-method-btn" data-method="netbanking" onclick="selectMethod(this,'netbanking')">🏦 Net Banking</button>
+            <button class="pay-method-btn" data-method="cod" onclick="selectMethod(this,'cod')">💵 COD</button>
+          </div>
+
+          <div id="cardForm">
+            <div class="form-group">
+              <label class="form-label" for="cardName">Name on Card *</label>
+              <input type="text" id="cardName" class="form-input" placeholder="PRIYA SHARMA" required>
+              <span class="form-error">Please enter the name on card</span>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="cardNum">Card Number *</label>
+              <input type="text" id="cardNum" class="form-input" placeholder="4242 4242 4242 4242" maxlength="19" oninput="formatCard(this)" required>
+              <span class="form-error">Please enter a valid card number</span>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="expiry">Expiry *</label>
+                <input type="text" id="expiry" class="form-input" placeholder="MM/YY" maxlength="5" oninput="formatExpiry(this)" required>
+                <span class="form-error">Please enter expiry date</span>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="cvv">CVV *</label>
+                <input type="password" id="cvv" class="form-input" placeholder="•••" maxlength="4" required>
+                <span class="form-error">Please enter CVV</span>
+              </div>
+            </div>
+          </div>
+
+          <div id="upiForm" style="display:none;">
+            <div class="form-group">
+              <label class="form-label" for="upiId">UPI ID *</label>
+              <input type="text" id="upiId" class="form-input" placeholder="yourname@upi">
+            </div>
+          </div>
+
+          <div id="netbankingForm" style="display:none;">
+            <div class="form-group">
+              <label class="form-label" for="bankSelect">Select Bank *</label>
+              <select id="bankSelect" class="form-input filter-select" style="border-radius:var(--radius-sm);padding:0.85rem 1rem;">
+                <option value="">-- Choose your bank --</option>
+                <option>State Bank of India</option>
+                <option>HDFC Bank</option>
+                <option>ICICI Bank</option>
+                <option>Axis Bank</option>
+                <option>Kotak Mahindra Bank</option>
+              </select>
+            </div>
+          </div>
+
+          <div id="codInfo" style="display:none;padding:1rem;background:rgba(82,183,136,0.08);border-radius:var(--radius-md);border:1px solid rgba(82,183,136,0.2);font-size:0.9rem;color:var(--text-mid);">
+            💵 Pay with cash when your plants arrive. COD available for orders up to ₹5,000.
+          </div>
+        </div>
+      </div>
+
+      <!-- Order Summary -->
+      <div class="order-summary-box">
+        <h3 style="margin-bottom:1.25rem;">Order Summary</h3>
+        <div id="orderItems"></div>
+        <hr class="order-divider">
+        <div class="summary-row"><span>Subtotal</span><span id="pSubtotal">$0.00</span></div>
+        <div class="summary-row"><span>Shipping</span><span id="pShipping">FREE</span></div>
+        <div class="summary-row"><span>GST (18%)</span><span id="pTax">$0.00</span></div>
+        <div class="summary-row total" style="font-size:1.2rem;"><span>Total</span><span id="pTotal">$0.00</span></div>
+        <button class="btn btn-primary btn-full" style="margin-top:1.5rem;" onclick="placeOrder()">
+          🌿 Place Order
+        </button>
+        <div style="margin-top:1rem;font-size:0.78rem;color:var(--text-light);text-align:center;line-height:1.6;">
+          🔒 Secured by SSL encryption<br>Your data is safe with us
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Success Modal -->
+<div class="success-modal" id="successModal" role="dialog" aria-labelledby="successTitle">
+  <div class="success-box">
+    <div class="success-icon">🌿</div>
+    <h2 id="successTitle" style="margin-bottom:0.75rem;">Order Placed!</h2>
+    <p style="margin-bottom:0.5rem;">Your plants are on their way.</p>
+    <p style="font-size:0.85rem;color:var(--text-light);margin-bottom:2rem;">Order confirmation sent to your email. Expected delivery: 3-5 business days.</p>
+    <div style="display:flex;gap:0.75rem;flex-wrap:wrap;justify-content:center;">
+      <a href="products.html" class="btn btn-primary">Continue Shopping</a>
+      <a href="index.html" class="btn btn-outline">Go Home</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">🌿 Plantify<span>.</span></div>
+        <p>Bringing nature indoors, one plant at a time.</p>
+        <div class="social-links">
+          <a href="#" class="social-link" aria-label="Instagram">📸</a>
+          <a href="#" class="social-link" aria-label="Twitter">🐦</a>
+        </div>
+      </div>
+      <div class="footer-col"><h5>Shop</h5><ul>
+        <li><a href="products.html">All Plants</a></li>
+        <li><a href="cart.html">Cart</a></li>
+      </ul></div>
+      <div class="footer-col"><h5>Help</h5><ul>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Shipping</a></li>
+        <li><a href="#">Returns</a></li>
+      </ul></div>
+      <div class="footer-col"><h5>Account</h5><ul>
+        <li><a href="auth.html">Login</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom"><span>© 2025 Plantify.</span></div>
+  </div>
+</footer>
+
+<div class="toast"></div>
+
+<style>
+  .pay-method-btn {
+    padding: 0.6rem 1.1rem;
+    border-radius: 50px;
+    border: 1.5px solid var(--border);
+    background: transparent;
+    color: var(--text-mid);
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .pay-method-btn.active {
+    background: var(--green-mid);
+    border-color: var(--green-mid);
+    color: white;
+  }
+</style>
+
+<script src="js/products-data.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/app.js"></script>
+<script>
+  // Render order summary
+  function renderSummary() {
+    const items = Cart.getAll();
+    const subtotal = Cart.getTotal();
+    const shipping = subtotal >= 50 ? 0 : 5.99;
+    const tax = subtotal * 0.18;
+    const total = subtotal + shipping + tax;
+
+    document.getElementById('orderItems').innerHTML = items.length
+      ? items.map(item => `
+          <div class="order-item">
+            <img src="${item.images[0]}" alt="${item.name}" loading="lazy">
+            <div class="order-item-info">
+              <div class="order-item-name">${item.name} × ${item.qty}</div>
+              <div class="order-item-price">$${(item.price * item.qty).toFixed(2)}</div>
+            </div>
+          </div>`).join('')
+      : '<p style="font-size:0.9rem;color:var(--text-light);">No items in cart.</p>';
+
+    document.getElementById('pSubtotal').textContent = `$${subtotal.toFixed(2)}`;
+    document.getElementById('pShipping').textContent = shipping === 0 ? 'FREE' : `$${shipping.toFixed(2)}`;
+    document.getElementById('pTax').textContent = `$${tax.toFixed(2)}`;
+    document.getElementById('pTotal').textContent = `$${total.toFixed(2)}`;
+  }
+  renderSummary();
+
+  function selectMethod(btn, method) {
+    document.querySelectorAll('.pay-method-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    ['cardForm','upiForm','netbankingForm','codInfo'].forEach(id => {
+      document.getElementById(id).style.display = 'none';
+    });
+    const map = { card:'cardForm', upi:'upiForm', netbanking:'netbankingForm', cod:'codInfo' };
+    document.getElementById(map[method]).style.display = 'block';
+  }
+
+  function formatCard(input) {
+    let v = input.value.replace(/\D/g,'').substring(0,16);
+    input.value = v.replace(/(.{4})/g,'$1 ').trim();
+  }
+
+  function formatExpiry(input) {
+    let v = input.value.replace(/\D/g,'');
+    if (v.length >= 2) v = v.substring(0,2) + '/' + v.substring(2,4);
+    input.value = v;
+  }
+
+  function validate() {
+    const required = ['firstName','lastName','email','phone','address','city','pincode'];
+    let valid = true;
+    required.forEach(id => {
+      const el = document.getElementById(id);
+      if (!el || !el.value.trim()) {
+        el.classList.add('error');
+        valid = false;
+      } else {
+        el.classList.remove('error');
+      }
+    });
+    // Email check
+    const emailEl = document.getElementById('email');
+    if (emailEl && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value)) {
+      emailEl.classList.add('error');
+      valid = false;
+    }
+    return valid;
+  }
+
+  function placeOrder() {
+    if (!validate()) {
+      Cart.showToast('⚠️ Please fill all required fields.');
+      return;
+    }
+    if (Cart.getAll().length === 0) {
+      Cart.showToast('🛒 Your cart is empty!');
+      return;
+    }
+    document.getElementById('successModal').classList.add('show');
+    Cart.clear();
+  }
+
+  // Remove error class on input
+  document.querySelectorAll('.form-input').forEach(input => {
+    input.addEventListener('input', () => input.classList.remove('error'));
+  });
+</script>
+</body>
+</html>

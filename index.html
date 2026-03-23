@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Plantify – Premium houseplants delivered to your doorstep. Shop indoor, outdoor, and air-purifying plants.">
+  <title>Plantify – Nature at Your Doorstep</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════════
+     NAVBAR
+══════════════════════════════════════════════════════════ -->
+<nav class="navbar" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" aria-label="Plantify home">
+      <div class="nav-logo-icon" aria-hidden="true">🌿</div>
+      Plantify<span>.</span>
+    </a>
+
+    <ul class="nav-links" role="list">
+      <li><a href="index.html" class="nav-link" data-page="index.html">Home</a></li>
+      <li class="nav-dropdown">
+        <a href="products.html" class="nav-link">Plant Types ▾</a>
+        <div class="dropdown-menu">
+          <a href="products.html?cat=indoor">🪴 Indoor Plants</a>
+          <a href="products.html?cat=outdoor">🌳 Outdoor Plants</a>
+          <a href="products.html?cat=succulent">🌵 Succulents</a>
+          <a href="products.html?cat=air-purifying">💨 Air-Purifying</a>
+        </div>
+      </li>
+      <li class="nav-dropdown">
+        <a href="#" class="nav-link">More ▾</a>
+        <div class="dropdown-menu">
+          <a href="dashboard.html">📊 Dashboard</a>
+          <a href="#why-us">🌟 Why Us</a>
+          <a href="#testimonials">💬 Reviews</a>
+          <a href="#map">📍 Find Us</a>
+        </div>
+      </li>
+      <li><a href="#map" class="nav-link">Contact</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <button class="nav-icon-btn theme-toggle" aria-label="Toggle theme">🌙</button>
+      <a href="cart.html" class="nav-icon-btn" aria-label="Shopping cart">
+        🛒
+        <span class="cart-count" aria-live="polite"></span>
+      </a>
+      <a href="auth.html" class="nav-login-btn">Login</a>
+      <button class="hamburger" aria-label="Toggle mobile menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <!-- Mobile Nav -->
+  <div class="mobile-nav" aria-hidden="true">
+    <a href="index.html" class="nav-link" data-page="index.html">Home</a>
+    <a href="products.html" class="nav-link">All Plants</a>
+    <a href="products.html?cat=indoor" class="nav-link">Indoor Plants</a>
+    <a href="products.html?cat=outdoor" class="nav-link">Outdoor Plants</a>
+    <a href="products.html?cat=succulent" class="nav-link">Succulents</a>
+    <a href="cart.html" class="nav-link">Cart</a>
+    <a href="auth.html" class="nav-link">Login / Sign Up</a>
+    <a href="dashboard.html" class="nav-link">Dashboard</a>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════════════════════════
+     HERO
+══════════════════════════════════════════════════════════ -->
+<section class="hero" aria-label="Hero">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">🌱 Free delivery on orders over $50</div>
+    <h1 class="hero-title">Breathe <em>Natural</em>,<br>Live Beautiful</h1>
+    <p class="hero-sub">Handpicked premium plants delivered fresh to your home. Transform your space into a living sanctuary.</p>
+    <div class="hero-cta">
+      <a href="products.html" class="btn btn-primary">🌿 Explore Plants</a>
+      <a href="#featured" class="btn btn-ghost">▶ Live Demo</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-num">2.4k+</div>
+        <div class="hero-stat-label">Happy Customers</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">150+</div>
+        <div class="hero-stat-label">Plant Varieties</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">4.9★</div>
+        <div class="hero-stat-label">Average Rating</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll" aria-hidden="true">
+    <div class="hero-scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     FEATURES STRIP
+══════════════════════════════════════════════════════════ -->
+<div class="features-strip" aria-hidden="true">
+  <div class="features-scroll">
+    <div class="feature-item"><span>🚚</span> Free Delivery Over $50</div>
+    <div class="feature-item"><span>🌱</span> Expert Plant Care Tips</div>
+    <div class="feature-item"><span>♻️</span> Eco-Friendly Packaging</div>
+    <div class="feature-item"><span>✅</span> 30-Day Plant Guarantee</div>
+    <div class="feature-item"><span>🎁</span> Gift Wrapping Available</div>
+    <div class="feature-item"><span>💧</span> Freshness Guaranteed</div>
+    <!-- Duplicate for seamless loop -->
+    <div class="feature-item"><span>🚚</span> Free Delivery Over $50</div>
+    <div class="feature-item"><span>🌱</span> Expert Plant Care Tips</div>
+    <div class="feature-item"><span>♻️</span> Eco-Friendly Packaging</div>
+    <div class="feature-item"><span>✅</span> 30-Day Plant Guarantee</div>
+    <div class="feature-item"><span>🎁</span> Gift Wrapping Available</div>
+    <div class="feature-item"><span>💧</span> Freshness Guaranteed</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     FEATURED PLANTS
+══════════════════════════════════════════════════════════ -->
+<section class="featured section-pad" id="featured" aria-labelledby="featured-title">
+  <div class="container">
+    <div class="text-center reveal">
+      <span class="section-label">Handpicked Selection</span>
+      <h2 class="section-title" id="featured-title">Featured Plants</h2>
+      <p class="section-subtitle">Our most-loved plants, chosen for beauty, ease of care, and their ability to transform any space.</p>
+    </div>
+    <div class="products-grid" id="featuredGrid"></div>
+    <div class="text-center" style="margin-top:3rem;">
+      <a href="products.html" class="btn btn-outline reveal">View All Plants →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     CATEGORIES
+══════════════════════════════════════════════════════════ -->
+<section class="categories section-pad" aria-labelledby="cat-title">
+  <div class="container">
+    <div class="text-center reveal">
+      <span class="section-label">Browse by Type</span>
+      <h2 class="section-title" id="cat-title">Shop by Category</h2>
+    </div>
+    <div class="categories-grid">
+      <a href="products.html?cat=indoor" class="category-card reveal">
+        <img src="https://images.unsplash.com/photo-1614594975525-e45190c55d0b?w=600&q=80" alt="Indoor plants">
+        <div class="category-overlay">
+          <div class="category-name">Indoor Plants</div>
+          <div class="category-count">48 varieties</div>
+          <div class="category-arrow">→</div>
+        </div>
+      </a>
+      <a href="products.html?cat=outdoor" class="category-card reveal reveal-delay-1">
+        <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=600&q=80" alt="Outdoor plants">
+        <div class="category-overlay">
+          <div class="category-name">Outdoor Plants</div>
+          <div class="category-count">36 varieties</div>
+          <div class="category-arrow">→</div>
+        </div>
+      </a>
+      <a href="products.html?cat=succulent" class="category-card reveal reveal-delay-2">
+        <img src="https://images.unsplash.com/photo-1459411621453-7b03977f4bfc?w=600&q=80" alt="Succulents">
+        <div class="category-overlay">
+          <div class="category-name">Succulents</div>
+          <div class="category-count">52 varieties</div>
+          <div class="category-arrow">→</div>
+        </div>
+      </a>
+      <a href="products.html?cat=air-purifying" class="category-card reveal reveal-delay-3">
+        <img src="https://images.unsplash.com/photo-1593691509543-c55fb32d8de5?w=600&q=80" alt="Air purifying plants">
+        <div class="category-overlay">
+          <div class="category-name">Air-Purifying</div>
+          <div class="category-count">29 varieties</div>
+          <div class="category-arrow">→</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     WHY US
+══════════════════════════════════════════════════════════ -->
+<section class="why-us section-pad" id="why-us" aria-labelledby="why-title">
+  <div class="container">
+    <div class="text-center reveal">
+      <span class="section-label">The Plantify Difference</span>
+      <h2 class="section-title" id="why-title">Why Choose Us?</h2>
+      <p class="section-subtitle">We're obsessed with plants and customer happiness — here's what sets us apart.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="why-icon" aria-hidden="true">🌱</div>
+        <div class="why-title">Expert Curation</div>
+        <p class="why-desc">Every plant is hand-selected by botanists for health, beauty, and ease of care.</p>
+      </div>
+      <div class="why-card reveal reveal-delay-1">
+        <div class="why-icon" aria-hidden="true">📦</div>
+        <div class="why-title">Safe Packaging</div>
+        <p class="why-desc">Proprietary eco-packaging keeps plants safe and stress-free during transit.</p>
+      </div>
+      <div class="why-card reveal reveal-delay-2">
+        <div class="why-icon" aria-hidden="true">✅</div>
+        <div class="why-title">30-Day Guarantee</div>
+        <p class="why-desc">If your plant doesn't thrive in 30 days, we'll replace it — no questions asked.</p>
+      </div>
+      <div class="why-card reveal reveal-delay-3">
+        <div class="why-icon" aria-hidden="true">🌿</div>
+        <div class="why-title">Care Support</div>
+        <p class="why-desc">Get personalised plant care tips and advice from our expert horticulturists.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     TESTIMONIALS
+══════════════════════════════════════════════════════════ -->
+<section class="testimonials section-pad" id="testimonials" aria-labelledby="review-title">
+  <div class="container">
+    <div class="text-center reveal">
+      <span class="section-label">Customer Love</span>
+      <h2 class="section-title" id="review-title">What People Are Saying</h2>
+    </div>
+    <div class="testimonials-track" role="list">
+      <div class="testimonial-card" role="listitem">
+        <div class="testimonial-stars" aria-label="5 stars">★★★★★</div>
+        <p class="testimonial-text">"My Monstera arrived in perfect condition — even better than the photos! The packaging was incredible, and it had new leaves within two weeks. Absolutely obsessed."</p>
+        <div class="testimonial-author">
+          <img src="https://i.pravatar.cc/100?img=47" alt="Priya S" class="testimonial-avatar">
+          <div>
+            <div class="testimonial-name">Priya Sharma</div>
+            <div class="testimonial-role">Interior Designer, Mumbai</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card" role="listitem">
+        <div class="testimonial-stars" aria-label="5 stars">★★★★★</div>
+        <p class="testimonial-text">"I've killed every plant I've ever owned. Then I found Plantify's Snake Plant, followed their care guide, and now I'm a plant parent of 12! Life-changing."</p>
+        <div class="testimonial-author">
+          <img src="https://i.pravatar.cc/100?img=12" alt="Rahul M" class="testimonial-avatar">
+          <div>
+            <div class="testimonial-name">Rahul Mehta</div>
+            <div class="testimonial-role">Software Engineer, Bangalore</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card" role="listitem">
+        <div class="testimonial-stars" aria-label="5 stars">★★★★★</div>
+        <p class="testimonial-text">"Gifted a curated plant bundle to my mum. She cried happy tears. The presentation, the card, the care instructions — it felt like a luxury experience from start to finish."</p>
+        <div class="testimonial-author">
+          <img src="https://i.pravatar.cc/100?img=32" alt="Ananya K" class="testimonial-avatar">
+          <div>
+            <div class="testimonial-name">Ananya Krishnan</div>
+            <div class="testimonial-role">Teacher, Chennai</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card" role="listitem">
+        <div class="testimonial-stars" aria-label="4 stars">★★★★☆</div>
+        <p class="testimonial-text">"The Bird of Paradise is STUNNING. Fast delivery, beautiful plant, and when I had a question the support team responded within an hour with a custom care video. Wow."</p>
+        <div class="testimonial-author">
+          <img src="https://i.pravatar.cc/100?img=68" alt="Vikram T" class="testimonial-avatar">
+          <div>
+            <div class="testimonial-name">Vikram Tiwari</div>
+            <div class="testimonial-role">Architect, Pune</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card" role="listitem">
+        <div class="testimonial-stars" aria-label="5 stars">★★★★★</div>
+        <p class="testimonial-text">"Third order and still blown away. The 30-day guarantee is real — my Fiddle Leaf wasn't doing well, and they sent a replacement plus a complimentary Pothos. Above and beyond."</p>
+        <div class="testimonial-author">
+          <img src="https://i.pravatar.cc/100?img=55" alt="Deepa N" class="testimonial-avatar">
+          <div>
+            <div class="testimonial-name">Deepa Nair</div>
+            <div class="testimonial-role">Yoga Instructor, Kochi</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     NEWSLETTER
+══════════════════════════════════════════════════════════ -->
+<section class="newsletter" aria-labelledby="newsletter-title">
+  <div class="container">
+    <h2 id="newsletter-title">Get Plant Care Tips & Exclusive Deals</h2>
+    <p>Join 12,000+ plant lovers. No spam — only green goodness, monthly.</p>
+    <form class="newsletter-form" onsubmit="handleNewsletter(event)" novalidate>
+      <input type="email" class="newsletter-input" placeholder="Your email address" required aria-label="Email address">
+      <button type="submit" class="btn btn-primary">Subscribe 🌿</button>
+    </form>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     MAP
+══════════════════════════════════════════════════════════ -->
+<section class="map-section section-pad" id="map" aria-labelledby="map-title">
+  <div class="container">
+    <div class="map-wrapper">
+      <div class="map-frame">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.840897!2d77.5945627!3d12.9715987!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae1670c9b44e6d%3A0xf8dfc3e8517e4fe0!2sBangalore%2C%20Karnataka!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+          allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          title="Plantify store location">
+        </iframe>
+      </div>
+      <div class="map-info reveal">
+        <span class="section-label">Visit Us</span>
+        <h3 id="map-title">Find Our Store</h3>
+        <p>Step into our flagship nursery and experience the magic of Plantify in person. Our experts are on hand to help you find the perfect plant.</p>
+        <div class="map-detail">
+          <div class="map-detail-icon" aria-hidden="true">📍</div>
+          <div class="map-detail-text">
+            <strong>Address</strong>
+            <span>42 Green Garden Lane, Indiranagar, Bangalore – 560038</span>
+          </div>
+        </div>
+        <div class="map-detail">
+          <div class="map-detail-icon" aria-hidden="true">🕐</div>
+          <div class="map-detail-text">
+            <strong>Opening Hours</strong>
+            <span>Mon–Sat: 9AM – 7PM &nbsp;|&nbsp; Sun: 10AM – 5PM</span>
+          </div>
+        </div>
+        <div class="map-detail">
+          <div class="map-detail-icon" aria-hidden="true">📞</div>
+          <div class="map-detail-text">
+            <strong>Contact</strong>
+            <span>+91 98765 43210 &nbsp;|&nbsp; hello@plantify.in</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════════════════════ -->
+<footer role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">🌿 Plantify<span>.</span></div>
+        <p>Bringing nature indoors, one plant at a time. Handpicked, sustainably grown, and delivered with care to plant lovers across India.</p>
+        <div class="social-links" aria-label="Social media links">
+          <a href="#" class="social-link" aria-label="Instagram">📸</a>
+          <a href="#" class="social-link" aria-label="Twitter">🐦</a>
+          <a href="#" class="social-link" aria-label="Facebook">👍</a>
+          <a href="#" class="social-link" aria-label="Pinterest">📌</a>
+          <a href="#" class="social-link" aria-label="YouTube">▶️</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Shop</h5>
+        <ul>
+          <li><a href="products.html">All Plants</a></li>
+          <li><a href="products.html?cat=indoor">Indoor Plants</a></li>
+          <li><a href="products.html?cat=outdoor">Outdoor Plants</a></li>
+          <li><a href="products.html?cat=succulent">Succulents</a></li>
+          <li><a href="products.html?cat=air-purifying">Air Purifiers</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Sustainability</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="dashboard.html">Dashboard</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Support</h5>
+        <ul>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Plant Care Guide</a></li>
+          <li><a href="#">Shipping Info</a></li>
+          <li><a href="#">Returns</a></li>
+          <li><a href="#map">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Plantify. All rights reserved. Made with 🌿 and ❤️</span>
+      <span>Privacy Policy &nbsp;|&nbsp; Terms of Service &nbsp;|&nbsp; Cookie Policy</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Toast -->
+<div class="toast" aria-live="polite" aria-atomic="true"></div>
+
+<!-- Scripts -->
+<script src="js/products-data.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/app.js"></script>
+<script>
+  // Hero image load animation
+  const heroBg = document.getElementById('heroBg');
+  const img = new Image();
+  img.onload = () => heroBg.classList.add('loaded');
+  img.src = 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=1920&q=80';
+  heroBg.style.backgroundImage = `url('${img.src}')`;
+
+  // Render featured products (first 8)
+  document.getElementById('featuredGrid').innerHTML =
+    PRODUCTS.slice(0, 8).map(buildProductCard).join('');
+  
+  // Re-init lazy load and reveal after dynamic render
+  setTimeout(() => { LazyLoad.init(); Reveal.init(); }, 50);
+
+  // Newsletter
+  function handleNewsletter(e) {
+    e.preventDefault();
+    const input = e.target.querySelector('input');
+    if (input.value && input.validity.valid) {
+      Cart.showToast('🌿 Subscribed! Welcome to the Plantify family.');
+      input.value = '';
+    }
+  }
+</script>
+</body>
+</html>
